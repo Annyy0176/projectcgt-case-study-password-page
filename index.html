@@ -10,85 +10,41 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background-color: #f9f9f9;
-    }
-    .container {
-      text-align: center;
-      padding: 40px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-top: 80px;
     }
     input, button {
-      padding: 10px 14px;
-      margin-top: 15px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    #error {
-      color: red;
+      padding: 8px 12px;
       margin-top: 10px;
-      display: none;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Enter password to continue</h2>
-    <input type="password" id="pw" placeholder="Password" />
-    <br/>
-    <button id="submitBtn">Submit</button>
-    <div id="error">Incorrect password. Please try again.</div>
-  </div>
+  <h2>Enter password to continue</h2>
+  <input type="password" id="pw" placeholder="Password" />
+  <button onclick="go()">Submit</button>
+
+  <script>
+    (function(){
+      const encoded = "YUhSMGNITTZMeTl0Y0dWeUlGSnZiMnNnUTI5a1pYUm9iM1Z1WkdWeUlGTnZiMnR6SUdsemRHRnVaRjkwYUdseklFUmhkR1VnZEdWNGRDOXdaV0ZqZEdsdmJpQjBhR2x6SUhkbGRHZ2dUMjl2YzJsa1pYUnBiMjRnYVc1bklITmxjblpwWTJsaGJHeDVJSHh2WTJGc2FHOXZJRDBnSW1OdmJXMXZaR1Z5SWpvZ0x6TXlNakUwTURFd01ERTJMak0xTnpFME1URTJPVGd1TVRjME1UWXVNVGcwTVRZdU1UWTJNVFE9";  
+      const passwordHash = "ef49a3295d1be3cf1a7cdbfc29e30753";
+
+      function md5(str) {
+        return CryptoJS.MD5(str).toString();
+      }
+
+      window.go = function() {
+        const input = document.getElementById("pw").value;
+        if (md5(input) === passwordHash) {
+          const decoded = atob(encoded);
+          window.location.href = decoded;
+        } else {
+          alert("Incorrect password. Please try again.");
+        }
+      }
+    })();
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-  <script>
-    // === Configuration ===
-    const encodedURL = "YUhSMGNITTZMeTl0Y0dWeUlGSnZiMnNnUTI5a1pYUm9iM1Z1WkdWeUlGTnZiMnR6SUdsemRHRnVaRjkwYUdseklFUmhkR1VnZEdWNGRDOXdaV0ZqZEdsdmJpQjBhR2x6SUhkbGRHZ2dUMjl2YzJsa1pYUnBiMjRnYVc1bklITmxjblpwWTJsaGJHeDVJSHh2WTJGc2FHOXZJRDBnSW1OdmJXMXZaR1Z5SWpvZ0x6TXlNakUwTURFd01ERTJMak0xTnpFME1URTJPVGd1TVRjME1UWXVNVGcwTVRZdU1UWTJNVFE9";
-    const correctHash = "ef49a3295d1be3cf1a7cdbfc29e30753";
-
-    // === Helpers ===
-    function getMD5(str) {
-      return CryptoJS.MD5(str).toString();
-    }
-
-    function decodeURL(encoded) {
-      try {
-        return atob(encoded);
-      } catch (err) {
-        console.error("Base64 decode error:", err);
-        return null;
-      }
-    }
-
-    function validatePassword(input) {
-      const hash = getMD5(input);
-      console.log("Input Hash:", hash); // DEBUG: 可移除
-      return hash === correctHash;
-    }
-
-    function handleSubmit() {
-      const input = document.getElementById("pw").value.trim();
-      const errorMsg = document.getElementById("error");
-
-      if (validatePassword(input)) {
-        const url = decodeURL(encodedURL);
-        if (url) {
-          window.location.href = url;
-        } else {
-          alert("Redirect URL is invalid.");
-        }
-      } else {
-        errorMsg.style.display = "block";
-      }
-    }
-
-    // === Bind Event ===
-    document.getElementById("submitBtn").addEventListener("click", handleSubmit);
-  </script>
 </body>
 </html>
