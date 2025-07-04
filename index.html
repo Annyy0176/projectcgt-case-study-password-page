@@ -10,24 +10,24 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 80px;
+      margin-top: 100px;
     }
     input, button {
       padding: 8px 12px;
-      margin-top: 10px;
+      margin: 20px 0px 10px 0px;
       font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <h2>Enter password to continue</h2>
+  <h2>Enter password</h2>
   <input type="password" id="pw" placeholder="Password" />
   <button onclick="go()">Submit</button>
 
   <script>
     (function(){
-      const encoded = "YUhSMGNITTZMeTl0Y0dWeUlGSnZiMnNnUTI5a1pYUm9iM1Z1WkdWeUlGTnZiMnR6SUdsemRHRnVaRjkwYUdseklFUmhkR1VnZEdWNGRDOXdaV0ZqZEdsdmJpQjBhR2x6SUhkbGRHZ2dUMjl2YzJsa1pYUnBiMjRnYVc1bklITmxjblpwWTJsaGJHeDVJSHh2WTJGc2FHOXZJRDBnSW1OdmJXMXZaR1Z5SWpvZ0x6TXlNakUwTURFd01ERTJMak0xTnpFME1URTJPVGd1TVRjME1UWXVNVGcwTVRZdU1UWTJNVFE9";  
-      const passwordHash = "ef49a3295d1be3cf1a7cdbfc29e30753";
+      const encoded = "YUhSMGNITTZMeTl0Y0dWeUlGSnZiMnNnUTI5a1pYUm9iM1Z1WkdWeUlGTnZiMnR6SUdsemRHRnVaRjkwYUdseklFUmhkR1VnZEdWNGRDOXdaV0ZqZEdsdmJpQjBhR2x6SUhkbGRHZ2dUMjl2YzJsa1pYUnBiMjRnYVc1bklITmxjblpwWTJsaGJHeDVJSHh2WTJGc2FHOXZJRDBnSW1OdmJXMXZaR1Z5SWpvZ0x6TXlNakUwTURFd01ERTJMak0xTnpFME1URTJPVGd1TVRjME1UWXVNVGcwTVRZdU1UWTJNVFE9";
+      const passwordHash = "d3ffbe5cec8d8c4c4bf41be7a5494204";
 
       function md5(str) {
         return CryptoJS.MD5(str).toString();
